@@ -1,0 +1,32 @@
+{% extends 'rss/base.html' %}
+
+
+{% block body %}
+
+{% if feed %}
+<br />
+<h2 style = "margin-left: 10px;">
+    <b>{{ feed.feed.title }} </b>
+</h2>
+
+{% if feed.entries %}
+
+{% for entry in feed.entries %}
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <p class="h4">
+                <a href="{{ entry.link }}" class="card-title">{{ entry.title }}</a>
+            </p>
+            <p>{{ entry.description }}</p>
+            <img class="col-sm-4" src="{{ entry.enclosures.0.href }}" alt="image">
+            <p class="card-text ml-3">{{ entry.published }}</p>
+        </div>
+    </div>
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% endblock %}
+
