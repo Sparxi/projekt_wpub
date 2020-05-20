@@ -5,7 +5,10 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WPUBP.settings')
+    if os.environ.get('DJANGO_ENV') == 'production':
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WPUBP.production')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WPUBP.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
